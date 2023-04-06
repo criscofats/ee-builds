@@ -1,0 +1,3 @@
+gcc 
+python36
+python36-devel
