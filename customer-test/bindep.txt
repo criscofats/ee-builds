@@ -1,8 +1,6 @@
 gcc 
 python39
 python39-devel
-python3-tox
 openldap-devel
-lcov
 clang-analyzer
 valgrind
