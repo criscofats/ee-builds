@@ -2,5 +2,3 @@ gcc
 python39
 python39-devel
 openldap-devel
-clang-analyzer
-valgrind
