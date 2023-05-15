@@ -49,7 +49,7 @@ jobs:
 
       # In this job, all steps begin with a name
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         
       - name: Install python requirements (ansible-builder)
         run: pip install -r requirements.txt
