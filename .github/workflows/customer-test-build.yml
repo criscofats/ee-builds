@@ -24,7 +24,7 @@ jobs:
     with:
       EE_FOLDER_NAME: 'customer-test'
       EE_IMAGE_TAG: 'latest'
-      QUAY_USER: ${{ secrets.QUAY_USERNAME }}
+      QUAY_USER: 'cmcaskil'
     secrets:
       REDHAT_USERNAME: ${{ secrets.REDHAT_USERNAME }}
       REDHAT_PASSWORD: ${{ secrets.REDHAT_PASSWORD }}
