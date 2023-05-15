@@ -24,7 +24,7 @@ jobs:
     with:
       EE_FOLDER_NAME: 'rhel_90_ee'
       EE_IMAGE_TAG: 'latest'
-      QUAY_USER: 'cmcaskil'
+      QUAY_USER: ${{ vars.QUAY_USER }}
     secrets:
       REDHAT_USERNAME: ${{ secrets.REDHAT_USERNAME }}
       REDHAT_PASSWORD: ${{ secrets.REDHAT_PASSWORD }}
