@@ -5,5 +5,3 @@ collections:
   - name: community.general
   - name: ansible.utils
   - name: ansible.posix
-  - name: chocolatey.chocolatey
-    version: 1.3.1
