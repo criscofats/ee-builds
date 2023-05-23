@@ -24,10 +24,10 @@ additional_build_files:
     dest: configs
 
 additional_build_steps:
-  # prepend_galaxy:
-  # - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
-  # - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_URL=https://console.redhat.com/api/automation-hub/content/10856009-synclist/
-  # - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_AUTH_URL=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+  prepend_galaxy:
+  - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+  - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_URL=https://console.redhat.com/api/automation-hub/content/10856009-synclist/
+  - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_AUTH_URL=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
   append_builder: |
     RUN pip3 install --upgrade pip setuptools
   append_final: |
