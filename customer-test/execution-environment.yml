@@ -13,9 +13,9 @@ dependencies:
   galaxy: ansible-collections.yml
   python: python-packages.txt
 
-# additional_build_files:
-#   - src: ../ansible.cfg
-#     dest: configs
+additional_build_files:
+  - src: ../ansible.cfg
+    dest: configs
 
 additional_build_steps:
   prepend_galaxy:
