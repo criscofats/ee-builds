@@ -1,8 +1,9 @@
 ---
-version: 1
+version: 3
 
 build_arg_defaults:
   EE_BASE_IMAGE: 'registry.redhat.io/ansible-automation-platform-23/ee-supported-rhel8:latest'
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
   
 ansible_config: '../ansible.cfg'
 
@@ -14,5 +15,10 @@ dependencies:
 additional_build_steps:
   prepend: |
     RUN pip3 install --upgrade pip setuptools
+  prepend_galaxy:
+    - COPY '../ansible.cfg' '/etc/ansible/ansible.cfg'
+    - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_URL=https://console.redhat.com/api/automation-hub/content/10856009-synclist/
+    - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_AUTH_URL=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+    - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN=${{ secrets.AH_TOKEN }}
   append: |
     LABEL quay.expires-after="45d"
