@@ -12,6 +12,12 @@ dependencies:
   system: bindep.txt
   galaxy: ansible-collections.yml
   python: python-packages.txt
+  python_interpreter:
+    package_system: "python39"
+    python_path: "/usr/bin/python3.9"
+
+options:
+  package_manager_path: /usr/bin/microdnf
 
 additional_build_files:
   - src: ../ansible.cfg
@@ -22,8 +28,8 @@ additional_build_steps:
   - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
   - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_URL=https://console.redhat.com/api/automation-hub/content/10856009-synclist/
   - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_AUTH_URL=https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
-#  - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN= ${{ secrets.AH_TOKEN }}
-  # append_builder: |
-  #   RUN pip3 install --upgrade pip setuptools
-  # append_final: |
-  #   LABEL quay.expires-after="45d"
+  - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN= ${{ secrets.AH_TOKEN }}
+  append_builder: |
+    RUN pip3 install --upgrade pip setuptools
+  append_final: |
+    LABEL quay.expires-after="45d"
