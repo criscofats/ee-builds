@@ -1,5 +1,5 @@
 # Workflow name
-name: ServiceNow EE build
+name: Customer Test Build
 
 # Controls when the workflow will run
 on:
@@ -8,7 +8,7 @@ on:
     branches:
       - main
     paths:
-      - 'servicenow-ee/**'
+      - 'customer-test/**'
 
   # Schedule workflow run at 00:00 on Sunday
   schedule:
@@ -16,13 +16,13 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   call-deploy-workflow:
     uses:  criscofats/ee-builds/.github/workflows/deploy.yml@main
     with:
-      EE_FOLDER_NAME: 'servicenow-ee'
+      EE_FOLDER_NAME: 'customer-test'
       EE_IMAGE_TAG: 'latest'
       QUAY_USER: 'cmcaskil'
     secrets:

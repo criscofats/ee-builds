@@ -1,19 +1,33 @@
 ---
-version: 1
+version: 3
+
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:latest
 
 build_arg_defaults:
-  EE_BASE_IMAGE: 'registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9'
-
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
 
 dependencies:
   galaxy: requirements.yml
   python: requirements.txt
   system: bindep.txt
+options:
+  package_manager_path: /usr/bin/microdnf
+
+additional_build_files:
+  - src: ../ansible.cfg
+    dest: configs
 
 additional_build_steps:
-  append:
+  prepend_galaxy:
+  - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+  - ARG AH_TOKEN
+  append_builder:
     - RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/awscliv2.zip"
     - RUN unzip /awscliv2.zip -d /aws
     - RUN /aws/aws/install
     - RUN curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/linux_64bit/session-manager-plugin.rpm" -o "/session-manager-plugin.rpm"
     - RUN dnf install -y /session-manager-plugin.rpm
+  append_final: |
+    LABEL quay.expires-after="45d"

@@ -3,14 +3,18 @@ version: 3
 
 images:
   base_image:
-    name: registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8:latest
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:latest
 
 build_arg_defaults:
   ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
 
 dependencies:
-  galaxy: requirements.yml
-  python: requirements.txt
+  system: bindep.txt
+  galaxy: ansible-collections.yml
+  python: python-packages.txt
+  python_interpreter:
+    package_system: "python39"
+    python_path: "/usr/bin/python3.9"
 
 options:
   package_manager_path: /usr/bin/microdnf
