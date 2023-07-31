@@ -20,7 +20,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   call-deploy-workflow:
-    uses:  criscofats/ee-builds/.github/workflows/deploy.yml@main
+    uses:  criscofats/ee-builds/.github/workflows/deploy.yml@devel
     with:
       EE_FOLDER_NAME: 'customer-test'
       EE_IMAGE_TAG: 'latest'
