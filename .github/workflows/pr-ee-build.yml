@@ -3,7 +3,8 @@ name: Devel EE Build
 on:
   pull_request_target:
     branches:
-      - main
+      # - main
+      - devel
     types: [opened, reopened, synchronize]
 
 jobs:
