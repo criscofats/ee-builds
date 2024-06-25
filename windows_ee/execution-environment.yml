@@ -9,21 +9,17 @@ build_arg_defaults:
   ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
 
 dependencies:
-  galaxy: requirements.yml
-  python: requirements.txt
+  galaxy:
+    collections:
+      - ansible.windows
+      - community.windows
+      - community.general
+      - ansible.utils
+      - ansible.posix
+      - chocolatey.chocolatey
+      - microsoft.ad
+  python:
+    - requests-credssp > 1.2.0
 
 options:
   package_manager_path: /usr/bin/microdnf
-
-additional_build_files:
-  - src: ../ansible.cfg
-    dest: configs
-
-additional_build_steps:
-  prepend_galaxy:
-  - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
-  - ARG AH_TOKEN
-  append_builder: |
-    RUN pip3 install --upgrade pip setuptools
-  append_final: |
-    LABEL quay.expires-after="45d"

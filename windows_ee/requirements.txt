@@ -1,1 +1,1 @@
-requests-credssp
+requests-credssp > 2.2.0
