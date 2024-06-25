@@ -1,0 +1,10 @@
+---
+collections:
+  - name: kubevirt.core
+  - name: kubernetes.core
+  - name: community.vmware
+  - name: community.general
+  - name: community.kubernetes
+  - name: ansible.utils
+  - name: ansible.posix
+    # version: 1.0.0
