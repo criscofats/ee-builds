@@ -3,7 +3,7 @@ version: 3
 
 images:
   base_image:
-    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:latest
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9:latest
 
 build_arg_defaults:
   ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '-vvv'
@@ -16,14 +16,19 @@ options:
   package_manager_path: /usr/bin/microdnf
 
 additional_build_files:
-  - src: ../ansible.cfg
-    dest: configs
+    # Can be used to resolve collections from private automation hub
+    - src: ansible.cfg
+      dest: configs
 
 additional_build_steps:
-  prepend_galaxy:
-  - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
-  - ARG AH_TOKEN
-  append_builder:
-  - RUN python -m ensurepip --upgrade
-  append_final: |
-    LABEL quay.expires-after="45d"
+    prepend_base:
+        - RUN $PYCMD -m pip install --upgrade pip setuptools
+    prepend_galaxy:
+        # Add custom ansible.cfg which defines collection install sources
+        - ADD _build/configs/ansible.cfg /etc/ansible/ansible.cfg
+        # AH_TOKEN is passed into the build command using a --build-arg
+        # accept this as an ARG during this stage to reference later
+        - ARG AH_TOKEN
+        # Use the above ARG to define an environment variable holding
+        # the token for resolving private collections
+        - ENV ANSIBLE_GALAXY_SERVER_AUTOMATION_HUB_TOKEN=$AH_TOKEN
