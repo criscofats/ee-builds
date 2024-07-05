@@ -1,3 +1,4 @@
 jmespath
 pyghmi
 gcc
+requests
