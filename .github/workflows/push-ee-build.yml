@@ -68,7 +68,7 @@ jobs:
         uses: redhat-actions/podman-login@v1
         with:
           registry: quay.io
-          username: ${{ secrets.REDHAT_USERNAME }}
+          username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.REDHAT_PASSWORD }}
 
       - name: Log in to registry.redhat.io
@@ -131,7 +131,7 @@ jobs:
           image: ${{ env.EE }}
           tags: ${{ env.IMAGE_TAG }} ${{ github.sha }}
           registry: quay.io/${{ secrets.QUAY_USER }}/
-          username: ${{ secrets.REDHAT_USERNAME }}
+          username: ${{ secrets.QUAY_USERNAME }}
           password: ${{ secrets.REDHAT_PASSWORD }}
 
       - name: Print summary
