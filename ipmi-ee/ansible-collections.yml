@@ -1,0 +1,9 @@
+---
+collections:
+  - ansible.controller
+  - community.general
+  - ansible.utils
+  - ansible.posix
+  - awx.awx
+  - ansible.netcommon
+
