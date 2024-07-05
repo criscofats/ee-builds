@@ -1,0 +1,13 @@
+---
+collections:
+  - name: kubevirt.core
+  - name: kubernetes.core
+  - name: community.vmware
+  - name: community.general
+  - name: community.kubernetes
+  - name: ansible.utils
+  - name: ansible.posix
+  - name: ansible.controller
+  - name: awx.awx
+  - name: ansible.netcommon
+  - name: redhat_cop.controller_configuration
