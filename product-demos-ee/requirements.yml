@@ -5,7 +5,7 @@ collections:
   - name: infra.ah_configuration
     version: ">=2.0.6"
   - name: infra.controller_configuration
-    version: ">=2.7.1"
+    version: ">=2.9.0"
   - name: redhat_cop.controller_configuration
     version: ">=2.3.1"
   # linux
@@ -41,6 +41,8 @@ collections:
     version: ">=8.0.0"
   - name: cisco.nxos
     version: ">=7.0.0"
+  - name: infoblox.nios_modules
+    version: ">=1.6.1"
   # openshift
   - name: kubernetes.core
     version: ">=4.0.0"
