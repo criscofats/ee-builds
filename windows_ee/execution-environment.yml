@@ -6,15 +6,7 @@ images:
     name: registry.redhat.io/ansible-automation-platform-24/ee-minimal-rhel8:latest
 
 dependencies:
-  galaxy:
-    collections:
-      - ansible.windows
-      - community.windows
-      - community.general
-      - ansible.utils
-      - ansible.posix
-      - chocolatey.chocolatey
-      - microsoft.ad
+  galaxy: requirements.yml
   python:
     - requests-credssp > 1.2.0
 
